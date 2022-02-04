@@ -18,6 +18,10 @@ RUN cd /tmp/paru/paru-bin && makepkg --syncdeps --install --noconfirm
 RUN paru -S --noconfirm powershell-bin
 USER root
 RUN useradd powershell --create-home
+RUN echo -e "Install-Module -Name PSWSMan -AcceptLicense -Force\n" | pwsh -Command -
+RUN echo -e "Install-WSMan\n" | pwsh -Command -
 USER powershell
 RUN echo -e "Install-Module -Name Az -AcceptLicense -Force\n" | pwsh -Command -
+RUN echo -e "Install-Module -Name ExchangeOnlineManagement -Force\n" | pwsh -Command -
+RUN echo -e "Import-Module ExchangeOnlineManagement; Get-Module ExchangeOnlineManagement"
 CMD pwsh
