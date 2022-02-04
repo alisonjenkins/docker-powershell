@@ -19,4 +19,5 @@ RUN paru -S --noconfirm powershell-bin
 USER root
 RUN useradd powershell --create-home
 USER powershell
+RUN echo -e "Install-Module -Name Az -AcceptLicense -Force\n" | pwsh -Command -
 CMD pwsh
